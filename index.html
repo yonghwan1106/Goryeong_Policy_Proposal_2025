@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>고령군 주민참여형 탄소중립 마을 시범사업 | 태양광 + 탄소포인트 + 마을기금 순환형 모델</title>
+    <meta name="description" content="농촌 마을 단위에서 태양광 발전, 탄소포인트제도, 마을기금 조성을 연계한 자립형 탄소중립 모델">
+    
+    <!-- 외부 라이브러리 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 커스텀 스타일 -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+    
+    <!-- Tailwind 커스텀 설정 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#2E7D32',
+                        'energy-blue': '#1565C0',
+                        'solar-yellow': '#F57F17',
+                        'earth-brown': '#5D4037',
+                        'success': '#4CAF50',
+                        'warning': '#FF9800',
+                        'info': '#2196F3',
+                        'neutral-gray': '#757575'
+                    },
+                    fontFamily: {
+                        'sans': ['Noto Sans KR', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(100px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 overflow-x-hidden">
+    
+    <!-- 네비게이션 -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- 로고 -->
+                <div class="flex items-center space-x-4">
+                    <img src="./assets/images/goryeong-logo.png" 
+                         alt="고령군 로고" 
+                         class="h-10 w-auto object-contain">
+                    <div>
+                        <h1 class="text-lg font-bold text-primary-green">탄소중립 마을</h1>
+                        <p class="text-xs text-neutral-gray">Carbon Neutral Village</p>
+                    </div>
+                </div>
+                
+                <!-- 메뉴 -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#hero" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">홈</a>
+                    <a href="./pages/current-issues.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">현황분석</a>
+                    <a href="./pages/improvement-plan.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">해결방안</a>
+                    <a href="./pages/expected-effects.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">기대효과</a>
+                    <a href="./pages/action-items.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">실행계획</a>
+                    <a href="./pages/budget-analysis.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">예산분석</a>
+                    <a href="./pages/benchmarking.html" class="nav-link text-neutral-gray hover:text-primary-green transition-colors">벤치마킹</a>
+                </div>
+                
+                <!-- 모바일 메뉴 버튼 -->
+                <button class="md:hidden flex items-center px-3 py-2 border rounded text-neutral-gray border-neutral-gray hover:text-primary-green hover:border-primary-green" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 풀스크린 슬라이더 히어로 섹션 -->
+    <section id="hero" class="relative min-h-screen overflow-hidden">
+        <!-- 슬라이더 컨테이너 -->
+        <div class="slider-container h-screen relative">
+            <!-- 진행바 -->
+            <div class="progress-bar fixed top-0 left-0 h-1 bg-solar-yellow z-50 transition-all duration-300" id="progressBar"></div>
+            
+            <!-- 슬라이드 1: 고령군 실제 사진 01.jpg -->
+            <div class="slide active" style="background-image: url('./assets/images/01.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-primary-green/80 via-primary-green/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-solar-yellow rounded-full mr-2 animate-pulse"></span>
+                        2025 고령군 정책제안 공모전
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">주민참여형</span>
+                        <span class="block text-solar-yellow">탄소중립 마을</span>
+                        <span class="block">시범사업</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        <span class="font-semibold text-solar-yellow">태양광 + 탄소포인트 + 마을기금</span><br>
+                        순환형 모델로 실현하는 지속가능한 농촌 미래
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 2: 고령군 실제 사진 02.jpg -->
+            <div class="slide" style="background-image: url('./assets/images/04.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-energy-blue/80 via-energy-blue/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-solar-yellow rounded-full mr-2 animate-pulse"></span>
+                        지속가능한 에너지 전환
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">태양광 발전으로</span>
+                        <span class="block text-solar-yellow">에너지 자립</span>
+                        <span class="block">80% 달성</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        농촌 지역 특성을 활용한 <span class="font-semibold text-solar-yellow">소규모 분산형 태양광</span><br>
+                        설치로 연간 4,800만원 에너지 비용 절감
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 3: 태양광 패널 이미지 -->
+            <div class="slide" style="background-image: url('./assets/images/03.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-solar-yellow/80 via-solar-yellow/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                        스마트 에너지 시스템
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">AI 기반</span>
+                        <span class="block text-white">에너지 관리</span>
+                        <span class="block">플랫폼</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        실시간 에너지 생산량 모니터링과 <span class="font-semibold text-white">수요 예측 시스템</span><br>
+                        으로 최적의 에너지 효율 실현
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 4: 친환경 마을 이미지 -->
+            <div class="slide" style="background-image: url('./assets/images/02.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-success/80 via-success/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-solar-yellow rounded-full mr-2 animate-pulse"></span>
+                        탄소포인트 시스템
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">참여할수록</span>
+                        <span class="block text-solar-yellow">늘어나는 혜택</span>
+                        <span class="block">마을기금</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        개인 탄소저감 활동이 <span class="font-semibold text-solar-yellow">마을 공동체 발전</span>으로<br>
+                        연결되는 혁신적 순환 시스템
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 5: 녹색 기술 이미지 -->
+            <div class="slide" style="background-image: url('./assets/images/05.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-earth-brown/80 via-earth-brown/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-solar-yellow rounded-full mr-2 animate-pulse"></span>
+                        지역경제 활성화
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">85개 신규</span>
+                        <span class="block text-solar-yellow">일자리 창출</span>
+                        <span class="block">로컬임팩트</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        <span class="font-semibold text-solar-yellow">설치·운영·관리</span> 전 과정에서 만들어지는<br>
+                        지역 주민 중심의 지속가능한 일자리
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 6: 미래 농촌 이미지 -->
+            <div class="slide" style="background-image: url('./assets/images/06.jpg')">
+                <div class="slide-overlay bg-gradient-to-r from-info/80 via-info/60 to-transparent"></div>
+                <div class="slide-content">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-solar-yellow rounded-full mr-2 animate-pulse"></span>
+                        미래농촌 모델
+                    </div>
+                    <h1 class="text-4xl md:text-7xl font-black leading-tight mb-6">
+                        <span class="block">전국 확산</span>
+                        <span class="block text-solar-yellow">가능한 모델</span>
+                        <span class="block">고령에서 시작</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 font-light leading-relaxed max-w-2xl">
+                        고령군이 선도하는 <span class="font-semibold text-solar-yellow">농촌 탄소중립</span>의 새로운 표준<br>
+                        전국 농촌지역 벤치마킹 모델로 확산
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 네비게이션 버튼들 -->
+            <button class="slide-nav prev" onclick="previousSlide()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button class="slide-nav next" onclick="nextSlide()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            
+            <!-- 슬라이드 인디케이터 -->
+            <div class="slide-indicators">
+                <div class="indicator active" onclick="goToSlide(0)"></div>
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+                <div class="indicator" onclick="goToSlide(4)"></div>
+                <div class="indicator" onclick="goToSlide(5)"></div>
+            </div>
+            
+            <!-- 스크롤 안내 -->
+            <div class="scroll-indicator">
+                <div class="text-white/80 text-sm mb-2">아래로 스크롤</div>
+                <svg class="w-6 h-6 text-white/80 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- 하단 성과 요약 카드 (슬라이더 위에 오버레이) -->
+        <!--div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center text-white transform hover:scale-105 transition-transform">
+                    <div class="text-2xl font-bold text-solar-yellow" data-count="4800">0</div>
+                    <div class="text-xs opacity-90">만원/년 절감</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center text-white transform hover:scale-105 transition-transform">
+                    <div class="text-2xl font-bold text-solar-yellow" data-count="70">0</div>
+                    <div class="text-xs opacity-90">% 탄소감축</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center text-white transform hover:scale-105 transition-transform">
+                    <div class="text-2xl font-bold text-solar-yellow" data-count="80">0</div>
+                    <div class="text-xs opacity-90">% 에너지자립</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center text-white transform hover:scale-105 transition-transform">
+                    <div class="text-2xl font-bold text-solar-yellow" data-count="85">0</div>
+                    <div class="text-xs opacity-90">개 일자리</div>
+                </div>
+            </div>
+        </div-->
+    </section>
+
+ 
+  
+    <!-- 문제점 분석 섹션 -->
+    <section id="problem" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">구체적인 문제 현황</h2>
+                <p class="text-xl text-neutral-gray max-w-3xl mx-auto">
+                    고령군이 직면한 심각한 현실과 탄소중립의 시급성을 데이터로 보여드립니다.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- 인구 감소 -->
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 4C18.21 4 20 5.79 20 8C20 10.21 18.21 12 16 12C13.79 12 12 10.21 12 8C12 5.79 13.79 4 16 4ZM16 14C20.42 14 24 15.79 24 18V20H8V18C8 15.79 11.58 14 16 14ZM6 6V9H4V6H1V4H4V1H6V4H9V6H6ZM6 13C4.67 13 2 13.67 2 15V16H10V15C10 13.67 7.33 13 6 13ZM6 11C7.11 11 8 10.11 8 9C8 7.89 7.11 7 6 7C4.89 7 4 7.89 4 9C4 10.11 4.89 11 6 11Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-red-700 mb-4">인구소멸 위기</h3>
+                    <div class="text-4xl font-black text-red-600 mb-2" data-count="30006">0</div>
+                    <p class="text-red-600 font-semibold mb-4">명 (3만명 선 붕괴)</p>
+                    <p class="text-gray-600">연평균 2.3% 감소로 경북 최고 감소율</p>
+                </div>
+                
+                <!-- 에너지 비용 -->
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M13 9V3.5L18.5 9M6 2C4.89 2 4 2.89 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V8L14 2H6Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-orange-700 mb-4">에너지 비용 부담</h3>
+                    <div class="text-4xl font-black text-orange-600 mb-2" data-count="15">0</div>
+                    <p class="text-orange-600 font-semibold mb-4">만원/월 (전국대비 25%↑)</p>
+                    <p class="text-gray-600">도시가스 미공급으로 전기·등유 의존</p>
+                </div>
+                
+                <!-- 고령화 -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-purple-700 mb-4">초고령화 사회</h3>
+                    <div class="text-4xl font-black text-purple-600 mb-2" data-count="42.8">0</div>
+                    <p class="text-purple-600 font-semibold mb-4">% (65세 이상 비율)</p>
+                    <p class="text-gray-600">전국 최고 수준, 마을공동체 유지 한계</p>
+                </div>
+            </div>
+            
+            <!-- 상세 문제점 -->
+            <div class="bg-gray-50 rounded-3xl p-8 lg:p-12" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">구체적 문제 현황</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">💸 마을회관 운영비 체납</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 45개 마을회관 중 14개소(30%) 전기료 체납</li>
+                            <li>• 동절기 월 50만원 운영비 부담</li>
+                            <li>• 냉난방비 절약으로 모임 중단 사례 증가</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">🔋 탄소포인트 참여율 저조</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 고령군 참여율: 전국 평균의 25% 수준</li>
+                            <li>• 디지털 접근성 부족으로 신청 어려움</li>
+                            <li>• 개별 인센티브 연 5-10만원으로 동기부여 부족</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">⚡ 개별 지원정책의 한계</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 가구당 500만원 높은 설치비</li>
+                            <li>• 규모의 경제 효과 미활용 (20% 비용절감 기회 상실)</li>
+                            <li>• 사후관리 체계 부재</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">💰 지역경제 순환구조 붕괴</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 연간 54억원 에너지 비용 지역 외부 유출</li>
+                            <li>• 마을 공동사업 재원 확보 극도로 어려움</li>
+                            <li>• 농가소득 정체와 부가수입원 부족</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 해결방안 섹션 -->
+    <section id="solution" class="py-20 bg-gradient-to-br from-primary-green to-energy-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-4">통합적 해결방안</h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                    3단계 순환형 모델로 개별 가구 혜택과 마을 공동체 발전을 동시 실현
+                </p>
+            </div>
+            
+            <!-- 3단계 프로세스 -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- 1단계 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-solar-yellow rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-black text-white">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">개별가구 에너지자립</h3>
+                    <div class="space-y-3 text-white/90">
+                        <p>• 3kW 태양광 설치 (가구당)</p>
+                        <p>• 연 4,200kWh 발전</p>
+                        <p>• 월 5-8만원 전기료 절감</p>
+                        <p>• 스마트 모니터링 시스템</p>
+                    </div>
+                </div>
+                
+                <!-- 2단계 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-success rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-black text-white">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">마을 공동발전소</h3>
+                    <div class="space-y-3 text-white/90">
+                        <p>• 50kW 공동발전소 건설</p>
+                        <p>• ESS 연계 에너지 저장</p>
+                        <p>• 마을회관·경로당 공급</p>
+                        <p>• 발전수익 마을기금 적립</p>
+                    </div>
+                </div>
+                
+                <!-- 3단계 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-info rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-3xl font-black text-white">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">탄소포인트 연계</h3>
+                    <div class="space-y-3 text-white/90">
+                        <p>• 환경부 제도 자동 연동</p>
+                        <p>• 개별혜택 80% + 기여금 20%</p>
+                        <p>• 연 1,600만원 마을기금</p>
+                        <p>• 지속가능 순환구조</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 순환형 플로우 시각화 -->
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 lg:p-12" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-2xl font-bold text-white mb-8 text-center">순환형 수익구조</h3>
+                <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-8">
+                    <div class="bg-solar-yellow rounded-xl p-4 text-center min-w-[120px]">
+                        <div class="text-2xl mb-2">☀️</div>
+                        <div class="font-bold text-white">태양광발전</div>
+                    </div>
+                    <div class="text-white text-2xl">→</div>
+                    <div class="bg-success rounded-xl p-4 text-center min-w-[120px]">
+                        <div class="text-2xl mb-2">💡</div>
+                        <div class="font-bold text-white">에너지절약</div>
+                    </div>
+                    <div class="text-white text-2xl">→</div>
+                    <div class="bg-info rounded-xl p-4 text-center min-w-[120px]">
+                        <div class="text-2xl mb-2">🎯</div>
+                        <div class="font-bold text-white">탄소포인트</div>
+                    </div>
+                    <div class="text-white text-2xl">→</div>
+                    <div class="bg-earth-brown rounded-xl p-4 text-center min-w-[120px]">
+                        <div class="text-2xl mb-2">💰</div>
+                        <div class="font-bold text-white">마을기금</div>
+                    </div>
+                    <div class="text-white text-2xl">→</div>
+                    <div class="bg-primary-green rounded-xl p-4 text-center min-w-[120px]">
+                        <div class="text-2xl mb-2">🏠</div>
+                        <div class="font-bold text-white">시설확대</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 기대효과 섹션 -->
+    <section id="impact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">기대효과</h2>
+                <p class="text-xl text-neutral-gray max-w-3xl mx-auto">
+                    정량적 분석을 통한 명확한 투자 가치와 지역 발전 효과
+                </p>
+            </div>
+            
+            <!-- 핵심 지표 대시보드 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-gradient-to-br from-primary-green to-success rounded-2xl p-6 text-white text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl font-black mb-2" data-count="4800">0</div>
+                    <div class="text-lg font-semibold">만원/년</div>
+                    <div class="text-sm opacity-90">전기료 절감</div>
+                </div>
+                <div class="bg-gradient-to-br from-energy-blue to-info rounded-2xl p-6 text-white text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl font-black mb-2" data-count="1">0</div>
+                    <div class="text-lg font-semibold">억원/년</div>
+                    <div class="text-sm opacity-90">군 예산절감</div>
+                </div>
+                <div class="bg-gradient-to-br from-solar-yellow to-warning rounded-2xl p-6 text-white text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl font-black mb-2" data-count="164">0</div>
+                    <div class="text-lg font-semibold">톤/년</div>
+                    <div class="text-sm opacity-90">CO₂ 감축</div>
+                </div>
+                <div class="bg-gradient-to-br from-earth-brown to-orange-600 rounded-2xl p-6 text-white text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl font-black mb-2" data-count="3.5">0</div>
+                    <div class="text-lg font-semibold">년</div>
+                    <div class="text-sm opacity-90">투자회수</div>
+                </div>
+            </div>
+            
+            <!-- 상세 효과 분석 -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 경제적 효과 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">💰 경제적 효과</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                            <span class="font-medium">전기료 절감</span>
+                            <span class="font-bold text-primary-green">3,000만원</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                            <span class="font-medium">REC 판매수익</span>
+                            <span class="font-bold text-primary-green">1,000만원</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                            <span class="font-medium">탄소포인트</span>
+                            <span class="font-bold text-primary-green">800만원</span>
+                        </div>
+                        <div class="border-t pt-3">
+                            <div class="flex justify-between items-center font-bold text-lg">
+                                <span>연간 총 효과</span>
+                                <span class="text-primary-green">4,800만원</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 환경적 효과 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">🌱 환경적 효과</h3>
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-success rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-3xl font-bold text-white">70%</span>
+                            </div>
+                            <div class="font-semibold">탄소 감축률</div>
+                            <div class="text-sm text-gray-600">연간 164톤 CO₂</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 bg-energy-blue rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-3xl font-bold text-white">80%</span>
+                            </div>
+                            <div class="font-semibold">에너지 자립률</div>
+                            <div class="text-sm text-gray-600">신재생에너지 90%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 사회적 효과 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">🏘️ 사회적 효과</h3>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-white rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium">일자리 창출</span>
+                                <span class="font-bold text-warning">85개</span>
+                            </div>
+                            <div class="text-sm text-gray-600">직접 40명 + 간접 45명</div>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium">관광수입 증대</span>
+                                <span class="font-bold text-warning">5,000만원</span>
+                            </div>
+                            <div class="text-sm text-gray-600">체험관광 프로그램</div>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-medium">주민 참여도</span>
+                                <span class="font-bold text-warning">95%</span>
+                            </div>
+                            <div class="text-sm text-gray-600">마을공동체 강화</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 실행계획 섹션 -->
+    <section id="roadmap" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-4">실행계획</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    24개월 단계별 로드맵으로 체계적이고 안정적인 사업 추진
+                </p>
+            </div>
+            
+            <!-- 타임라인 -->
+            <div class="relative">
+                <!-- 중앙선 -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-green to-energy-blue"></div>
+                
+                <div class="space-y-12">
+                    <!-- Phase 1 -->
+                    <div class="flex items-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-2xl p-6 shadow-xl">
+                                <h3 class="text-xl font-bold text-primary-green mb-3">Phase 1: 기반 구축</h3>
+                                <p class="text-gray-600 mb-4">1~6개월</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 추진체계 구축 및 조례 제정</li>
+                                    <li>• 시범마을 선정 및 주민동의</li>
+                                    <li>• 기술검토 및 설계 완료</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="flex items-center" data-aos="fade-left" data-aos-delay="200">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-xl">
+                                <h3 class="text-xl font-bold text-success mb-3">Phase 2: 시설 설치</h3>
+                                <p class="text-gray-600 mb-4">7~12개월</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 개별 가구 태양광 설치 (50가구)</li>
+                                    <li>• 마을 공동발전소 건설</li>
+                                    <li>• 스마트 모니터링 시스템 구축</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="flex items-center" data-aos="fade-right" data-aos-delay="300">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-2xl p-6 shadow-xl">
+                                <h3 class="text-xl font-bold text-energy-blue mb-3">Phase 3: 운영 최적화</h3>
+                                <p class="text-gray-600 mb-4">13~18개월</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 통합 운영 시스템 가동</li>
+                                    <li>• 탄소포인트 연계 시스템</li>
+                                    <li>• 마을기금 운영체계 정착</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-energy-blue rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Phase 4 -->
+                    <div class="flex items-center" data-aos="fade-left" data-aos-delay="400">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-solar-yellow rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold">4</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-xl">
+                                <h3 class="text-xl font-bold text-solar-yellow mb-3">Phase 4: 확산</h3>
+                                <p class="text-gray-600 mb-4">19~24개월</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 3개 마을 추가 확산</li>
+                                    <li>• 성과분석 및 모델 고도화</li>
+                                    <li>• 타 지역 확산 매뉴얼 개발</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="py-20 bg-gradient-to-r from-primary-green to-success">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-white mb-6">지속가능한 농촌 미래를 만들어가겠습니다</h2>
+            <p class="text-xl text-white/90 mb-8">
+                고령군에서 시작하여 전국으로 확산될 탄소중립 마을 모델
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="./pages/current-issues.html" class="bg-white text-primary-green px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
+                    상세 제안서 보기
+                </a>
+                <a href="./pages/budget-analysis.html" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-primary-green transition-all transform hover:scale-105">
+                    예산 분석 확인
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">제안자 정보</h3>
+                    <p class="text-gray-300">박용환 (크리에이티브 넥서스)</p>
+                    <p class="text-gray-300">sanoramyun8@gmail.com</p>
+                    <p class="text-gray-300">010-7939-3123</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">프로젝트 정보</h3>
+                    <p class="text-gray-300">2025 고령군 정책제안 공모전</p>
+                    <p class="text-gray-300">제안일: 2025년 6월 3일</p>
+                    <p class="text-gray-300">주제: 탄소중립 마을 시범사업</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">관련 페이지</h3>
+                    <div class="space-y-2">
+                        <a href="./pages/current-issues.html" class="block text-gray-300 hover:text-white transition-colors">현황 및 문제점</a>
+                        <a href="./pages/improvement-plan.html" class="block text-gray-300 hover:text-white transition-colors">개선방안</a>
+                        <a href="./pages/expected-effects.html" class="block text-gray-300 hover:text-white transition-colors">기대효과</a>
+                        <a href="./pages/action-items.html" class="block text-gray-300 hover:text-white transition-colors">실행계획</a>
+                        <a href="./pages/budget-analysis.html" class="block text-gray-300 hover:text-white transition-colors">예산분석</a>
+                        <a href="./pages/benchmarking.html" class="block text-gray-300 hover:text-white transition-colors">벤치마킹</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 크리에이티브 넥서스. 고령군 탄소중립 마을 시범사업 제안서.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크립트 -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+<!-- 슬라이더 제어를 위한 전역 함수들 -->
+<script>
+// 전역 슬라이더 제어 함수들 (HTML에서 직접 호출용)
+function nextSlide() {
+    if (window.SliderAPI) {
+        window.SliderAPI.next();
+    }
+}
+
+function previousSlide() {
+    if (window.SliderAPI) {
+        window.SliderAPI.previous();
+    }
+}
+
+function goToSlide(index) {
+    if (window.SliderAPI) {
+        window.SliderAPI.goTo(index);
+    }
+}
+
+// 이미지 로드 실패 시 폴백 처리
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        const slides = document.querySelectorAll('.slide');
+        
+        slides.forEach((slide, index) => {
+            const bgImage = slide.style.backgroundImage;
+            if (bgImage) {
+                const imageUrl = bgImage.slice(4, -1).replace(/"/g, "");
+                const img = new Image();
+                
+                img.onerror = function() {
+                    console.warn(`이미지 로드 실패: ${imageUrl}`);
+                    // 폴백 그라디언트 배경 적용
+                    const gradients = [
+                        'linear-gradient(135deg, #2E7D32, #4CAF50)', // 초록
+                        'linear-gradient(135deg, #1565C0, #42A5F5)', // 파랑
+                        'linear-gradient(135deg, #F57F17, #FFA726)', // 노랑
+                        'linear-gradient(135deg, #5D4037, #8D6E63)', // 갈색
+                        'linear-gradient(135deg, #2196F3, #64B5F6)', // 하늘
+                        'linear-gradient(135deg, #4CAF50, #81C784)'  // 연두
+                    ];
+                    slide.style.background = gradients[index % gradients.length];
+                };
+                
+                img.onload = function() {
+                    console.log(`이미지 로드 성공: ${imageUrl}`);
+                };
+                
+                img.src = imageUrl;
+            }
+        });
+    } catch (error) {
+        console.error('이미지 폴백 처리 중 오류:', error);
+    }
+});
+
+// 에러 핸들링 강화
+window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('main.js')) {
+        console.error('메인 스크립트 오류:', e.message, '라인:', e.lineno);
+    }
+});
+</script>
+
+</html>

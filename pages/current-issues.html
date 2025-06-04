@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>현황 및 문제점 | 고령군 탄소중립 마을 시범사업</title>
+    <meta name="description" content="고령군이 직면한 인구감소, 에너지비용 부담, 고령화 등 심각한 현실과 탄소중립의 시급성">
+    
+    <!-- 외부 라이브러리 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 커스텀 스타일 -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    
+    <!-- Tailwind 커스텀 설정 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#2E7D32',
+                        'energy-blue': '#1565C0',
+                        'solar-yellow': '#F57F17',
+                        'earth-brown': '#5D4037',
+                        'success': '#4CAF50',
+                        'warning': '#FF9800',
+                        'info': '#2196F3',
+                        'neutral-gray': '#757575'
+                    },
+                    fontFamily: {
+                        'sans': ['Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    
+    <!-- 네비게이션 -->
+    <nav id="navbar" class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- 로고 -->
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="flex items-center space-x-4">
+                        <img src="../assets/images/goryeong-logo.png" 
+                             alt="고령군 로고" 
+                             class="h-10 w-auto object-contain">
+                        <div>
+                            <h1 class="text-lg font-bold text-primary-green">탄소중립 마을</h1>
+                            <p class="text-xs text-neutral-gray">현황 및 문제점</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- 페이지 네비게이션 -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="../index.html" class="text-neutral-gray hover:text-primary-green transition-colors">홈</a>
+                    <a href="./current-issues.html" class="text-primary-green font-semibold">현황분석</a>
+                    <a href="./improvement-plan.html" class="text-neutral-gray hover:text-primary-green transition-colors">해결방안</a>
+                    <a href="./expected-effects.html" class="text-neutral-gray hover:text-primary-green transition-colors">기대효과</a>
+                    <a href="./action-items.html" class="text-neutral-gray hover:text-primary-green transition-colors">실행계획</a>
+                    <a href="./budget-analysis.html" class="text-neutral-gray hover:text-primary-green transition-colors">예산분석</a>
+                    <a href="./benchmarking.html" class="text-neutral-gray hover:text-primary-green transition-colors">벤치마킹</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-red-600 via-red-500 to-orange-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-black mb-6">
+                    심각한 현실과<br>
+                    <span class="text-yellow-300">시급한 과제</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-white/90">
+                    고령군이 직면한 구조적 문제들과<br>
+                    탄소중립 정책의 필요성을 데이터로 보여드립니다
+                </p>
+                <div class="inline-flex items-center bg-white/20 backdrop-blur-md rounded-full px-6 py-3">
+                    <svg class="w-5 h-5 mr-2 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                    </svg>
+                    <span class="font-semibold">위기 상황 진단 보고서</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 핵심 위기 지표 -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">고령군 위기 현황</h2>
+                <p class="text-xl text-neutral-gray">
+                    3가지 핵심 지표로 보는 구조적 위기
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 인구 감소 위기 -->
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-3xl p-8 border-l-4 border-red-500" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 4C18.21 4 20 5.79 20 8C20 10.21 18.21 12 16 12C13.79 12 12 10.21 12 8C12 5.79 13.79 4 16 4ZM16 14C20.42 14 24 15.79 24 18V20H8V18C8 15.79 11.58 14 16 14ZM6 6V9H4V6H1V4H4V1H6V4H9V6H6ZM6 13C4.67 13 2 13.67 2 15V16H10V15C10 13.67 7.33 13 6 13ZM6 11C7.11 11 8 10.11 8 9C8 7.89 7.11 7 6 7C4.89 7 4 7.89 4 9C4 10.11 4.89 11 6 11Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-red-700 mb-2">인구소멸 위기</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- 현재 인구 상황 -->
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm font-medium text-gray-600">현재 인구</span>
+                                <span class="text-3xl font-bold text-red-600" data-count="30006">30,006</span>
+                            </div>
+                            <div class="text-xs text-red-500 font-semibold mb-3">⚠️ 3만명 선 붕괴 임박</div>
+                            <!-- 3만명 기준 시각화 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                    <span>25,000</span>
+                                    <span class="text-red-600 font-bold">30,000 (위험선)</span>
+                                    <span>35,000</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-4">
+                                    <div class="bg-gradient-to-r from-gray-300 via-yellow-400 to-red-500 h-4 rounded-full relative" style="width: 100%">
+                                        <div class="absolute right-1 top-0 h-4 w-1 bg-red-700"></div>
+                                        <div class="absolute" style="right: 1px; top: -8px;">
+                                            <div class="w-3 h-3 bg-red-600 rotate-45 border border-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-1 text-xs text-red-600 font-semibold">현재 위치: 위험 구간</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">연평균 감소율</span>
+                                <span class="text-2xl font-bold text-red-600">-2.3%</span>
+                            </div>
+                            <div class="text-xs text-red-500">📉 경북 최고 감소율</div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">5년간 감소</span>
+                                <span class="text-2xl font-bold text-red-600">-2,650명</span>
+                            </div>
+                            <div class="text-xs text-red-500">💀 매년 530명씩 감소</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 에너지 비용 부담 -->
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 border-l-4 border-orange-500" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13 9V3.5L18.5 9M6 2C4.89 2 4 2.89 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V8L14 2H6Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-orange-700 mb-2">에너지 비용 부담</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- 전국 평균과 비교 -->
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm font-medium text-gray-600">월평균 에너지비</span>
+                                <span class="text-3xl font-bold text-orange-600" data-count="15">15만원</span>
+                            </div>
+                            <div class="text-xs text-orange-500 font-semibold mb-3">💰 전국평균 대비 25% 높음</div>
+                            <!-- 전국 평균 비교 시각화 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs text-gray-600">
+                                    <span>전국평균</span>
+                                    <span>12만원</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-400 h-3 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-orange-600 font-semibold">
+                                    <span>고령군</span>
+                                    <span>15만원 (+25%)</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-orange-500 h-3 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">도시가스 미공급</span>
+                                <span class="text-2xl font-bold text-orange-600">70%</span>
+                            </div>
+                            <div class="text-xs text-orange-500">⚡ 전기·등유 의존</div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">연간 총 부담</span>
+                                <span class="text-2xl font-bold text-orange-600" data-count="180">180만원</span>
+                            </div>
+                            <div class="text-xs text-orange-500">💸 가구당 연간 부담</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 초고령화 사회 -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 border-l-4 border-purple-500" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2">초고령화 사회</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- 고령화 단계별 비교 -->
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm font-medium text-gray-600">고령화율</span>
+                                <span class="text-3xl font-bold text-purple-600" data-count="42">42%</span>
+                            </div>
+                            <div class="text-xs text-purple-500 font-semibold mb-3">👴 65세 이상 인구 비율</div>
+                            <!-- 고령화 단계 시각화 -->
+                            <div class="space-y-2">
+                                <div class="grid grid-cols-3 gap-1 text-xs text-center">
+                                    <div class="bg-green-100 text-green-700 py-1 rounded">고령화사회<br>7%</div>
+                                    <div class="bg-yellow-100 text-yellow-700 py-1 rounded">고령사회<br>14%</div>
+                                    <div class="bg-red-100 text-red-700 py-1 rounded font-bold">초고령사회<br>21%</div>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-4 mt-2">
+                                    <div class="bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 h-4 rounded-full relative" style="width: 100%">
+                                        <div class="absolute right-0 top-0 h-4 w-2 bg-purple-700"></div>
+                                        <div class="absolute" style="right: -2px; top: -8px;">
+                                            <div class="w-4 h-4 bg-purple-600 rotate-45 border-2 border-white"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center text-xs text-purple-600 font-bold">현재: 초고령사회 기준의 2배 수준</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">전국 순위</span>
+                                <span class="text-2xl font-bold text-purple-600">1위</span>
+                            </div>
+                            <div class="text-xs text-purple-500">🥇 전국 최고 수준</div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">예측 (2030년)</span>
+                                <span class="text-2xl font-bold text-purple-600">50%</span>
+                            </div>
+                            <div class="text-xs text-purple-500">📈 지속적 증가 전망</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            <div class="text-xs text-purple-500">2배 초과</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 인구 변화 추이 -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">인구 변화 추이</h2>
+                <p class="text-xl text-neutral-gray">
+                    2020년부터 2025년까지 지속적인 인구 감소
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="h-96">
+                    <canvas id="populationChart"></canvas>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="text-center p-4 bg-red-50 rounded-xl">
+                        <div class="text-2xl font-bold text-red-600 mb-2">2020년</div>
+                        <div class="text-lg text-gray-700">32,450명</div>
+                    </div>
+                    <div class="text-center p-4 bg-orange-50 rounded-xl">
+                        <div class="text-2xl font-bold text-orange-600 mb-2">2024년</div>
+                        <div class="text-lg text-gray-700">30,006명</div>
+                    </div>
+                    <div class="text-center p-4 bg-red-50 rounded-xl">
+                        <div class="text-2xl font-bold text-red-600 mb-2">2025년(추정)</div>
+                        <div class="text-lg text-gray-700">29,800명</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 구체적 문제 현황 -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">구체적 문제 현황</h2>
+                <p class="text-xl text-neutral-gray">
+                    각 분야별 상세한 문제점과 현황 분석
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- 마을회관 운영비 위기 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-warning rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl">💸</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">마을회관 운영비 체납</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">전체 마을회관</span>
+                            <span class="font-bold text-primary-green">45개소</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">전기료 체납</span>
+                            <span class="font-bold text-red-600">14개소 (30%)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">동절기 운영비</span>
+                            <span class="font-bold text-orange-600">월 50만원</span>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <p class="text-sm text-yellow-800">
+                                <strong>⚠️ 심각성:</strong> 냉난방비 절약을 위해 겨울철 마을 모임을 중단하는 사례가 증가하고 있어 
+                                마을공동체의 기본 기능마저 위협받고 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 탄소포인트 참여율 저조 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-info rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl">🔋</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">탄소포인트 참여율 저조</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">고령군 참여율</span>
+                            <span class="font-bold text-red-600">전국평균 25%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">고령층 참여율</span>
+                            <span class="font-bold text-red-600">전체평균 15%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">개별 인센티브</span>
+                            <span class="font-bold text-orange-600">연 5-10만원</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <p class="text-sm text-blue-800">
+                                <strong>📱 원인:</strong> 온라인 신청 위주의 복잡한 절차와 디지털 접근성 부족으로 
+                                고령층의 참여가 극히 저조한 상황입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 개별 지원정책의 한계 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">개별 지원정책의 한계</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">가구당 설치비</span>
+                            <span class="font-bold text-red-600">500만원</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">비용절감 기회상실</span>
+                            <span class="font-bold text-orange-600">20%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">사후관리 체계</span>
+                            <span class="font-bold text-red-600">부재</span>
+                        </div>
+                        
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <p class="text-sm text-red-800">
+                                <strong>🔄 문제점:</strong> 개별 설치로 인한 높은 단가와 규모의 경제 효과 미활용으로 
+                                비효율적인 예산 집행이 지속되고 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 지역경제 순환구조 붕괴 -->
+                <div class="bg-gray-50 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl">💰</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">지역경제 순환구조 붕괴</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">연간 에너지비용 유출</span>
+                            <span class="font-bold text-red-600">54억원</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">마을발전기금</span>
+                            <span class="font-bold text-orange-600">200만원 (75%↓)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg">
+                            <span class="font-medium">외부지원 의존도</span>
+                            <span class="font-bold text-red-600">90% 이상</span>
+                        </div>
+                        
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <p class="text-sm text-purple-800">
+                                <strong>💔 심각성:</strong> 에너지 비용의 대부분이 지역 외부로 유출되면서 
+                                지역 내 경제 순환 구조가 완전히 붕괴된 상황입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 시급성 및 기회비용 -->
+    <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">시급성 및 기회비용</h2>
+                <p class="text-xl text-gray-300">
+                    문제 해결의 시급성과 지연 시 발생할 기회비용
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 기회비용의 확대 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12S6.47 22 11.99 22C17.52 22 22 17.52 22 12S17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12S7.58 4 12 4S20 7.58 20 12S16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">기회비용의 확대</h3>
+                    </div>
+                    <div class="space-y-4 text-center">
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-yellow-300">2025년</div>
+                            <div class="text-sm">탄소중립 지원사업 확대</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-yellow-300">정책기회</div>
+                            <div class="text-sm">놓칠 위험 높음</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 지역소멸 가속화 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M1 21H23L12 2L1 21ZM13 18H11V16H13V18ZM13 14H11V10H13V14Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">지역소멸 가속화</h3>
+                    </div>
+                    <div class="space-y-4 text-center">
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-red-300">에너지비용</div>
+                            <div class="text-sm">부담 가중</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-red-300">청년층</div>
+                            <div class="text-sm">유출 가속화</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 정책적 파급효과 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">전국 확산 가능성</h3>
+                    </div>
+                    <div class="space-y-4 text-center">
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-300">500곳</div>
+                            <div class="text-sm">유사 농촌지역</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-300">선도모델</div>
+                            <div class="text-sm">구축 기회</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="py-16 bg-gradient-to-r from-primary-green to-success">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-white mb-6">문제는 명확합니다. 이제 해결방안을 제시하겠습니다.</h2>
+            <p class="text-xl text-white/90 mb-8">
+                위기를 기회로 바꾸는 혁신적인 접근법을 확인해보세요
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="./improvement-plan.html" class="bg-white text-primary-green px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
+                    해결방안 보기
+                </a>
+                <a href="./expected-effects.html" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-primary-green transition-all transform hover:scale-105">
+                    기대효과 확인
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">제안자 정보</h3>
+                    <p class="text-gray-300">박용환 (크리에이티브 넥서스)</p>
+                    <p class="text-gray-300">sanoramyun8@gmail.com</p>
+                    <p class="text-gray-300">010-7939-3123</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">프로젝트 정보</h3>
+                    <p class="text-gray-300">2025 고령군 정책제안 공모전</p>
+                    <p class="text-gray-300">제안일: 2025년 6월 3일</p>
+                    <p class="text-gray-300">주제: 탄소중립 마을 시범사업</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">관련 페이지</h3>
+                    <div class="space-y-2">
+                        <a href="./current-issues.html" class="block text-gray-300 hover:text-white transition-colors">현황 및 문제점</a>
+                        <a href="./improvement-plan.html" class="block text-gray-300 hover:text-white transition-colors">개선방안</a>
+                        <a href="./expected-effects.html" class="block text-gray-300 hover:text-white transition-colors">기대효과</a>
+                        <a href="./action-items.html" class="block text-gray-300 hover:text-white transition-colors">실행계획</a>
+                        <a href="./budget-analysis.html" class="block text-gray-300 hover:text-white transition-colors">예산분석</a>
+                        <a href="./benchmarking.html" class="block text-gray-300 hover:text-white transition-colors">벤치마킹</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 크리에이티브 넥서스. 고령군 탄소중립 마을 시범사업 제안서.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크립트 -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // 페이지별 차트 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 인구 변화 추이 차트
+            const populationChartCanvas = document.getElementById('populationChart');
+            if (populationChartCanvas && typeof Chart !== 'undefined') {
+                const ctx = populationChartCanvas.getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020년', '2021년', '2022년', '2023년', '2024년', '2025년(추정)'],
+                        datasets: [{
+                            label: '인구수 (명)',
+                            data: [32450, 31890, 31320, 30750, 30006, 29800],
+                            borderColor: '#DC2626',
+                            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#DC2626',
+                            pointBorderColor: '#FFFFFF',
+                            pointBorderWidth: 2,
+                            pointRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: '고령군 인구 변화 추이 (2020-2025)',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 29000,
+                                max: 33000,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString() + '명';
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: '인구수 (명)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: '연도'
+                                }
+                            }
+                        },
+                        elements: {
+                            point: {
+                                hoverRadius: 8
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
