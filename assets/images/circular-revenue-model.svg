@@ -1,0 +1,196 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 화살표 마커 정의 -->
+    <marker id="arrowhead-yellow" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F57F17" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4CAF50" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2196F3" />
+    </marker>
+    <marker id="arrowhead-brown" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5D4037" />
+    </marker>
+    
+    <!-- 그라디언트 정의 -->
+    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F57F17;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2196F3;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8D6E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5D4037;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 배경 -->
+  <rect width="500" height="400" fill="#f8f9fa" rx="20"/>
+  
+  <!-- 화살표 그룹 -->
+  <g id="arrows">
+    <!-- 1단계 → 2단계 (태양광 → 에너지절약) -->
+    <path d="M 165 100 L 335 100" 
+          stroke="#F57F17" stroke-width="4" fill="none" 
+          marker-end="url(#arrowhead-yellow)" 
+          stroke-dasharray="12,6" 
+          class="arrow-animation">
+      <animate attributeName="stroke-dashoffset" 
+               values="0;-18" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- 2단계 → 3단계 (에너지절약 → 탄소포인트) -->
+    <path d="M 380 145 L 380 255" 
+          stroke="#4CAF50" stroke-width="4" fill="none" 
+          marker-end="url(#arrowhead-green)" 
+          stroke-dasharray="12,6" 
+          class="arrow-animation">
+      <animate attributeName="stroke-dashoffset" 
+               values="0;-18" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </path>
+    
+    <!-- 3단계 → 4단계 (탄소포인트 → 마을기금) -->
+    <path d="M 335 300 L 165 300" 
+          stroke="#2196F3" stroke-width="4" fill="none" 
+          marker-end="url(#arrowhead-blue)" 
+          stroke-dasharray="12,6" 
+          class="arrow-animation">
+      <animate attributeName="stroke-dashoffset" 
+               values="0;-18" dur="2s" repeatCount="indefinite" begin="1s"/>
+    </path>
+    
+    <!-- 4단계 → 1단계 (마을기금 → 태양광) -->
+    <path d="M 120 255 L 120 145" 
+          stroke="#5D4037" stroke-width="4" fill="none" 
+          marker-end="url(#arrowhead-brown)" 
+          stroke-dasharray="12,6" 
+          class="arrow-animation">
+      <animate attributeName="stroke-dashoffset" 
+               values="0;-18" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+    </path>
+  </g>
+  
+  <!-- 4단계 원형 요소들 -->
+  <g id="steps">
+    <!-- 1단계: 태양광 발전 (왼쪽 상단) -->
+    <g class="step-group" transform="translate(120,100)">
+      <circle r="45" fill="url(#yellowGrad)" stroke="#fff" stroke-width="3" 
+              filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))">
+        <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <g transform="translate(0,-5)">
+        <!-- 태양 아이콘 -->
+        <path d="M-8-8 L-6-6 M8-8 L6-6 M0-12 L0-10 M0 10 L0 12 M-8 8 L-6 6 M8 8 L6 6 M-12 0 L-10 0 M10 0 L12 0" 
+              stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle r="6" fill="#fff"/>
+        <text y="25" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">1단계</text>
+        <text y="35" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8">태양광발전</text>
+      </g>
+    </g>
+    
+    <!-- 2단계: 에너지 절약 (오른쪽 상단) -->
+    <g class="step-group" transform="translate(380,100)">
+      <circle r="45" fill="url(#greenGrad)" stroke="#fff" stroke-width="3" 
+              filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))">
+        <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+      <g transform="translate(0,-5)">
+        <!-- 에너지 절약 아이콘 -->
+        <path d="M-6-6 C-6-9 -3-12 0-12 C3-12 6-9 6-6 C6-3 3 0 0 0 C-3 0 -6-3 -6-6 Z" 
+              fill="#fff" stroke="#fff" stroke-width="1"/>
+        <path d="M8-8 C11-8 14-5 14-2 C14 1 11 4 8 4" 
+              fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <text y="25" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">2단계</text>
+        <text y="35" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8">에너지절약</text>
+      </g>
+    </g>
+    
+    <!-- 3단계: 탄소포인트 (오른쪽 하단) -->
+    <g class="step-group" transform="translate(380,300)">
+      <circle r="45" fill="url(#blueGrad)" stroke="#fff" stroke-width="3" 
+              filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))">
+        <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <g transform="translate(0,-5)">
+        <!-- 포인트 아이콘 -->
+        <circle r="8" fill="none" stroke="#fff" stroke-width="2"/>
+        <text y="2" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8" font-weight="bold">!</text>
+        <text y="25" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">3단계</text>
+        <text y="35" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8">탄소포인트</text>
+      </g>
+    </g>
+    
+    <!-- 4단계: 마을기금 (왼쪽 하단) -->
+    <g class="step-group" transform="translate(120,300)">
+      <circle r="45" fill="url(#brownGrad)" stroke="#fff" stroke-width="3" 
+              filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))">
+        <animate attributeName="r" values="45;48;45" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+      </circle>
+      <g transform="translate(0,-5)">
+        <!-- 돈 아이콘 -->
+        <text y="2" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold">$</text>
+        <text y="25" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">4단계</text>
+        <text y="35" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="8">마을기금</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- 중앙 마을공동체 -->
+  <g id="center" transform="translate(250,200)">
+    <rect x="-50" y="-40" width="100" height="80" rx="12" 
+          fill="url(#brownGrad)" stroke="#fff" stroke-width="3" 
+          filter="drop-shadow(0 6px 12px rgba(0,0,0,0.25))">
+      <animate attributeName="width" values="100;104;100" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="height" values="80;84;80" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <g transform="translate(0,-10)">
+      <!-- 집 아이콘 -->
+      <path d="M-12 0 L0 -12 L12 0 L8 0 L8 8 L-8 8 L-8 0 Z" fill="#fff"/>
+      <rect x="-4" y="0" width="8" height="8" fill="url(#brownGrad)"/>
+      <text y="20" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="bold">마을공동체</text>
+    </g>
+  </g>
+  
+  <!-- 제목 -->
+  <text x="250" y="30" text-anchor="middle" fill="#333" font-family="sans-serif" font-size="18" font-weight="bold">
+    순환형 수익구조
+  </text>
+  
+  <style>
+    .step-group {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .step-group:hover {
+      transform: scale(1.05);
+    }
+    .arrow-animation {
+      transition: stroke-width 0.3s ease;
+    }
+    .step-group:hover ~ #arrows .arrow-animation {
+      stroke-width: 6;
+    }
+    
+    @media (max-width: 768px) {
+      .step-group text {
+        font-size: 6px;
+      }
+      #center text {
+        font-size: 8px;
+      }
+    }
+  </style>
+</svg>
